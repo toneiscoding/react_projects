@@ -68,8 +68,15 @@ function App() {
     }
   ])
 
+  const [pages, setPages] = useState(["home", "about", "contact", "services", "portfolio"])
+    let JSXarray = pages.map((pageString)=>{
+      return( 
+        <div>{pageString}</div>
+      )
+    })
   return (
-    <div className="App">
+    <div className="App"> 
+    {JSXarray}
     <SingleProduct name={products[0].name} price={products[0].price}           />
     <SingleProduct name={products[1].name} price={products[1].price}           />
     <SingleProduct name={products[2].name} price={products[2].price}           />
