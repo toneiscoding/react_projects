@@ -2,7 +2,9 @@ import React from 'react'
 
 const MovieDisplay = (props) => {
    let movie = props.movie
-  return (
+
+const loaded = ()=> {
+    return (
     <div>
         <h1>The MovieDisplay Component</h1>
         <h1>{movie.Title}</h1>
@@ -11,6 +13,13 @@ const MovieDisplay = (props) => {
         <h2>{movie.Year}</h2>
     </div>
   )
-}
 
+}
+  
+const loading = () => {
+        return <h1>No Movie to Display</h1>
+    }
+
+    return movie ? loaded() : loading();
+}
 export default MovieDisplay
