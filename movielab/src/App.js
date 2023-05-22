@@ -6,21 +6,31 @@ import { useState, useEffect} from 'react';
 
 function App() {
   //variable with apiKEY
-  const apiKey = "85d7d533";
+  
 
   //State to hold movie data
-  const [movie, setMovie] = useState(null);
-
+  const [movie, setMovie] = useState([null]);
+  const apiKey = "85d7d533";
   //function to getMovie
   const getMovie = async (searchTerm) => {
     //make fetch request and store response
-    const reponsee = await fetch(
-      `http://www.omdbapi.com/?apikey=${apiKey}&t=${searchTerm}`
-    )
+    try {
+      const response = await fetch(
+        `http://www.omdbapi.com/?apikey=${apiKey}&t=${searchTerm}`
+      )
     //Parse JSON response into a javascript object
-    const data = await Response.json();
-    setMovie(data);
-  }
+      const data = await response.json();
+      setMovie(data);
+      console.log(data)
+    } catch(e){
+      console.error(e)
+    }
+  };
+  console.log(movie)
+  //This will run on the first render but not on subsquent renders
+  useEffect(() => {
+    getMovie("Clueless");
+  }, []);
   // USE OUR COMPONENTS IN APPs RETURNED JSX
   // We pass the getMovie function as a prop called moviesearch
   return (
